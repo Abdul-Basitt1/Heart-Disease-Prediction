@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-size: 20px;
+            font-family: "Source Sans Pro, Arial, sans-serif";
+            padding: 30px;
+            background: linear-gradient(to bottom, #3d0894, #ff4060);
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 48px;
+        }
+
+        .feature-table {
+            margin-top: 50px;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 28px;
+            animation: fadeIn 3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .graph-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .graph-container img {
+        width: 500px;
+        height: 500px;
+        margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <b><p style="size: 50px;" class="result">{{ result }}</p></b>
+    
+    <h2>Input Feature Values</h2>
+    <table class="table feature-table">
+        <tbody>
+        {% for feature, value in feature_values.items() %}
+            <tr>
+                <td>{{ feature }}</td>
+                <td>{{ value }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Display accuracy, precision, recall, and F1 score -->
+    <h2>Performance Metrics</h2>
+    <table class="table feature-table">
+        <tr>
+            <td>Accuracy:</td>
+            <td>{{ accuracy }}</td>
+        </tr>
+        <tr>
+            <td>Precision:</td>
+            <td>{{ precision }}</td>
+        </tr>
+        <tr>
+            <td>Recall:</td>
+            <td>{{ recall }}</td>
+        </tr>
+        <tr>
+            <td>F1 Score:</td>
+            <td>{{ f1 }}</td>
+        </tr>
+    </table>
+    
+    <h2>Graphs and Additional Information</h2>
+    <div class="graph-container">
+        <div class="graph">
+            <img src="{{ url_for('static', filename='histograms.png') }}" alt="Histograms">
+            <p class="text-center">Histograms</p>
+        </div>
+        <div class="graph">
+            <img src="{{ url_for('static', filename='box_plots.png') }}" alt="Box Plots">
+            <p class="text-center">Box Plots</p>
+        </div>
+        <div class="graph">
+            <img src="{{ url_for('static', filename='correlation_matrix.png') }}" alt="Correlation Matrix">
+            <p class="text-center">Correlation Matrix</p>
+        </div>
+        <div class="graph">
+            <img src="{{ url_for('static', filename='scatter_plot_matrix.png') }}" alt="Scatter Plot Matrix">
+            <p class="text-center">Scatter Plot Matrix</p>
+        </div>
+        <div class="graph">
+            <img src="{{ url_for('static', filename='confusion_matrix.png') }}" alt="Confusion Matrix">
+            <p class="text-center">Confusion Matrix</p>
+        </div>
+        <div class="graph">
+            <img src="{{ url_for('static', filename='learning_curve.png') }}" alt="Learning Curve">
+            <p class="text-center">Learning Curve</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

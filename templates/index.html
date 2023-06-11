@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        /* Main CSS */
+        body {
+          font-size: 20px;
+            font-family: "Source Sans Pro, Arial, sans-serif";
+            padding: 30px;
+            background: linear-gradient(to bottom, #3d0894, #ff4060);
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 48px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background: linear-gradient(to right, #8800cc, #2b2e4a);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+          margin-top: 5%;
+            background-color: rgba(7, 52, 136, 0.822);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 18px;
+            font-family: 'Brush Script MT', cursive;
+        }
+    </style>
+</head>
+<body>
+    <h1>Heart Disease Prediction</h1>
+    <div class="container">
+        <form id="predictionForm" method="POST" action="/predict" target="_blank">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" class="form-control" value="{{ feature_values['age'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="sex">Gender (0 = Female, 1 = Male):</label>
+                <input type="number" id="sex" name="sex" class="form-control" value="{{ feature_values['sex'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cp">Chest Pain Type:</label>
+                <input type="number" id="cp" name="cp" class="form-control" value="{{ feature_values['cp'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="trestbps">Resting Blood Pressure:</label>
+                <input type="number" id="trestbps" name="trestbps" class="form-control" value="{{ feature_values['trestbps'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="chol">Cholesterol Level:</label>
+                <input type="number" id="chol" name="chol" class="form-control" value="{{ feature_values['chol'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="fbs">Fasting Blood Sugar (0 = <= 120 mg/dl, 1 = > 120 mg/dl):</label>
+                <input type="number" id="fbs" name="fbs" class="form-control" value="{{ feature_values['fbs'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="restecg">Resting Electrocardiographic Results:</label>
+                <input type="number" id="restecg" name="restecg" class="form-control" value="{{ feature_values['restecg'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="thalach">Maximum Heart Rate Achieved:</label>
+                <input type="number" id="thalach" name="thalach" class="form-control" value="{{ feature_values['thalach'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="exang">Exercise Induced Angina (0 = No, 1 = Yes):</label>
+                <input type="number" id="exang" name="exang" class="form-control" value="{{ feature_values['exang'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="oldpeak">ST Depression Induced by Exercise Relative to Rest:</label>
+                <input type="number" id="oldpeak" name="oldpeak" class="form-control" value="{{ feature_values['oldpeak'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="slope">Slope of the Peak Exercise ST Segment:</label>
+                <input type="number" id="slope" name="slope" class="form-control" value="{{ feature_values['slope'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="ca">Number of Major Vessels (0-3) Colored by Flouroscopy:</label>
+                <input type="number" id="ca" name="ca" class="form-control" value="{{ feature_values['ca'] }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="thal">Thalassemia:</label>
+                <input type="number" id="thal" name="thal" class="form-control" value="{{ feature_values['thal'] }}" required>
+            </div>
+            <!-- Rest of the form fields -->
+            
+            <input type="submit" value="Predict" class="btn btn-primary">
+        </form>
+    </div>
+
+    <footer class="footer">
+        <h3>Group Members</h3>
+        <p>Moeez Khan, Abdul Basit, Syed Sohail</p>
+        <span style="font-size: 24px;">AI Semester Project</span>
+    </footer>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    
+    <!-- JavaScript for Submit Event -->
+    <script>
+        document.getElementById("predictionForm").addEventListener("submit", function(event) {
+    // Prevent form submission
+    event.preventDefault();
+    
+    // Submit the form in a new tab/window
+    this.target = "_blank";
+    this.submit();
+});
+    </script>
+</body>
+</html>
